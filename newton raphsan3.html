@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="number" id="input" onkeyup="myFunction()">
+
+    <br>
+
+    <p id="root"></p>
+    <p id="calRoot"></p>
+
+    <div class="work"></div>
+
+    <script>
+
+        const fn = (x) => {
+            return Math.pow(x, 3)-2*x-5;
+        }
+        
+        const derifn = (x) => {
+            return 3*Math.pow(x, 2)-2;
+        }
+
+        function myFunction() {
+            var x = document.getElementById("input").value;
+            document.getElementById("root").innerHTML = "Your input: " + x;
+
+            var h, i=0;
+            
+            h = fn(x)/derifn(x);
+            
+            while(Math.abs(h) > 0.0001){
+                i++;
+                h = fn(x)/derifn(x);
+                x = x-h;
+                console.log("root x"+i+" = "+x);
+            }
+
+            document.getElementById("calRoot").innerHTML = "Root: " + x.toFixed(4);
+        }
+        
+    </script>
+    
+</body>
+</html>
